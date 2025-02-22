@@ -7,7 +7,7 @@ router = APIRouter()
 rooms: List[Rooms] = []
 
 # Get a room through name
-@router.post('/', response_model=Rooms)
+@router.post('/')
 def create_room(room: Rooms):
     for r in rooms:
         if r.name == room.name:
@@ -40,7 +40,7 @@ def update_room(room_name:str, updated_room: Rooms):
     for index, r in enumerate(rooms):
         if r.name == room_name:
             rooms[index] = updated_room
-            return {"message": "Room updated successfully", "room": updated_room}
+            return updated_room
 
     raise HTTPException(status_code=404, detail="Room does not exist")
 

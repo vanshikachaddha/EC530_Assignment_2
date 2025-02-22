@@ -30,7 +30,7 @@ def get_house(house_id: int):
 def get_house_owners(house_id: int):
     for h in houses:
         if h.id == house_id:
-            return {"owner_email": h.owner_email}  
+            return h.owner_email
         
     raise HTTPException(status_code=404, detail="House does not exist")
 
@@ -40,7 +40,7 @@ def update_house(house_id: int, updated_house: House):
     for index, h in enumerate(houses):
         if h.id == house_id:
             houses[index] = updated_house
-            return {"message": "House updated successfully", "house": updated_house}
+            return updated_house
 
     raise HTTPException(status_code=404, detail="House not found")
 
